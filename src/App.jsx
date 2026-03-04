@@ -347,7 +347,13 @@ export default function App() {
       const res=await fetch(`${API_BASE}/`);
       const d=await res.json();
       setImages(Array.isArray(d)?d:(d.images||d.data||[]));
-    }catch{}finally{setLoading(false);}
+    }
+
+    catch (error) {
+      console.error("Error fetching gallery:", error);
+    } finally {
+      setLoading(false);
+    }
   },[]);
 
   useEffect(()=>{
